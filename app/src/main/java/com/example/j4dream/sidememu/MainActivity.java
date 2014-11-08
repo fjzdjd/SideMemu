@@ -22,7 +22,6 @@ public class MainActivity extends Activity {
 
     public void toggleMemu(View view){
         mLeftMenu.toggle();
-
     }
 
     @Override
