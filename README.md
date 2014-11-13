@@ -1,5 +1,7 @@
 SideMemu
 ========
+study from IMOOC.com
+
 android 4.0 +
 
 android studio(Beta) 0.8.14
