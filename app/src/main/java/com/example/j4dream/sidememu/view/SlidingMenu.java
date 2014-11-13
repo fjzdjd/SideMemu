@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+import android.widget.ViewAnimator;
 
 import com.example.j4dream.sidememu.R;
 
@@ -124,6 +125,27 @@ public class SlidingMenu extends HorizontalScrollView {
         }else {
             openMenu();
         }
+    }
 
+    //滚动发生时  抽屉拉出 删除此方法变成传统侧滑方法
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+        //调用属性动画,设置TranslationX
+        float scale = l * 1.0f / mMenuWidth; //1~0
+        //仿QQ缩放
+        float rightScale = 0.7f + 0.3f * scale;
+        float leftScale = 1.0f - scale * 0.3f;
+        float leftAlpha = 0.6f + 0.4f * (1 - scale);
+
+        mMenu.setTranslationX(mMenuWidth *  scale * 0.8f);
+        mMenu.setScaleX(leftScale);
+        mMenu.setScaleY(leftScale);
+        mMenu.setAlpha(leftAlpha);
+        //设置缩放中心点
+        mContent.setPivotX(0);
+        mContent.setPivotY(mContent.getHeight() / 2);
+        mContent.setScaleX(rightScale);
+        mContent.setScaleY(rightScale);
     }
 }
